@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Mona | Happy Propose Day 🌹</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+    .popup {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 450px;
+      border-radius: 30px;
+      box-shadow: 0 0 50px rgba(255,255,255,0.1);
+      animation: fadeIn 1.2s ease;
+      z-index: 10;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    h1 { color: #1a1a2e; margin-bottom: 20px; font-size: 2em; font-weight: 700; }
+    p { font-size: 1.15em; line-height: 1.8; color: #333; margin-bottom: 15px; }
+    .heart-main { font-size: 70px; margin-bottom: 15px; animation: pulse 1s infinite; cursor: pointer; display: inline-block; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+
+    .falling-heart {
+      position: absolute;
+      top: -20px;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+<div id="content">
+  <div class="popup">
+    <div class="heart-main" onclick="extraHearts()">💍</div>
+    <h1>Happy Propose Day, Mona</h1>
+    
+    <p>— Miss you sonamoni 🖤</p>
+  </div>
+</div>
+
+<script>
+  function showFallingHearts(count = 20) {
+    const heartTypes = ['🖤', '🤍', '🌹'];
+    for (let i=0; i<count; i++){
+      const heart = document.createElement('div');
+      heart.className = 'falling-heart';
+      heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+      
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+      heart.style.opacity = Math.random();
+      
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+  }
+
+  function extraHearts() {
+    showFallingHearts(50);
+  }
+
+  // Initial burst and continuous flow
+  showFallingHearts(30);
+  setInterval(() => showFallingHearts(8), 1500);
+</script>
+</body>
+</html>
